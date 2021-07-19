@@ -13,14 +13,14 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 
 		int lastArticleId = 0;
-		
+
 		ArrayList<Article> articles = new ArrayList<Article>();
 		SimpleDateFormat adf = new SimpleDateFormat("yyyy/MM/dd  HH:mm");
-		
+
 		while (true) {
 			System.out.print("\n명령어) ");
 			String command = sc.nextLine().trim();
-			
+
 			command = command.trim();
 
 			if (command.length() == 0) {
@@ -38,43 +38,44 @@ public class Main {
 				String body = sc.nextLine();
 				Date arDate = new Date();
 
-				Article article = new Article(id, title, body,arDate);
+				Article article = new Article(id, title, body, arDate);
 				articles.add(article);
 
-				System.out.println("\n"+id + "번 글이 생성 되었습니다.");
+				System.out.println("\n" + id + "번 글이 생성 되었습니다.");
 			} else if (command.equals("article list")) {
 
 				if (articles.size() == 0) {
 					System.out.println("게시물이 없습니다.");
 					continue;
-				} 
-					System.out.println("번호 | 제목");
-					for (int i = 0; i < articles.size(); i++) {
-						Article article = articles.get(i);
+				}
+				System.out.println("번호 | 제목");
+				for (int i = 0; i < articles.size(); i++) {
+					Article article = articles.get(i);
 
-						System.out.printf("%2d  |   %s\n", article.id, article.title);
-					}
+					System.out.printf("%2d  |   %s\n", article.id, article.title);
+				}
 			} else if (command.startsWith("article detail ")) {
 				String[] commandBits = command.split(" ");
-				
+
 				int id = Integer.parseInt(commandBits[2]);
-				
+
 				boolean foundArticle = false;
-				
-				for(int i = 0; i < articles.size(); i++) {
+
+				for (int i = 0; i < articles.size(); i++) {
 					Article article = articles.get(i);
-					
-					if(article.id == id) {
+
+					if (article.id == id) {
 						foundArticle = true;
 						break;
 					}
 				}
-				
-				if(foundArticle == false) {
-					System.out.println(id+"번 게시물은 존재하지 않습니다.");
+
+				if (foundArticle == false) {
+					System.out.println(id + "번 게시물은 존재하지 않습니다.");
 					continue;
 				} else {
-					System.out.printf("번호 : %d\n제목 : %s\n내용 : %s\n게시한 날짜 : %s", id, articles.get(id-1).title, articles.get(id-1).body,adf.format(articles.get(id-1).articleDate));
+					System.out.printf("번호 : %d\n제목 : %s\n내용 : %s\n게시한 날짜 : %s", id, articles.get(id - 1).title,
+							articles.get(id - 1).body, adf.format(articles.get(id - 1).articleDate));
 					continue;
 				}
 			} else {
