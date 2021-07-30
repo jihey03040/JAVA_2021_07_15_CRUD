@@ -17,7 +17,7 @@ public class Article extends Dto {
 		this.hit = hit;
 	}
 
-	public void increaseHit() {
+	public void increaseHit() {	// 메소드가 실행되면 hit ++
 		hit++;
 	}
 }
